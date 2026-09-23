@@ -7,71 +7,27 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const App = () => {
-      const [index, setIndex] = React.useState("-1");
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
+    const Btn = ({ text, big }) => {
       return (
-        <div>
-          <h1 className="title">Super Converter</h1>
-          <select onChange={onSelect}>
-            <option value="-1">Select your units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          <hr />
-          {index === "-1" ? "Please select your units" : null}
-          {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <KmToMiles /> : null}
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: big ? 18 : 16,
+          }}
+        >
+          {text}
+        </button>
       );
     };
-    const KmToMiles = () => {
-      return <h3>Km To Miles</h3>;
-    };
-    const MinutesToHours = () => {
-      const [amount, setAmount] = React.useState(0);
-      const [inverted, setInverted] = React.useState(false);
-      const onChange = (event) => {
-        setAmount(event.target.value);
-      };
-      const reset = () => {
-        setAmount(0);
-      };
-      const onInvert = () => {
-        reset();
-        setInverted((current) => !current);
-      };
-
+    const App = () => {
       return (
         <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              value={inverted ? amount * 60 : amount}
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={inverted}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={inverted ? amount : Math.round(amount / 60)}
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              onChange={onChange}
-              disabled={!inverted}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={onInvert}>
-            {inverted ? "Turn Back" : "Invert"}
-          </button>
+          <Btn text="Save Changes" big={true} />
+          <Btn text="Continue" big={false} />
         </div>
       );
     };
