@@ -50,7 +50,11 @@
   flex-wrap: wrap;
   margin: 5px 0px;
 }
-
+.movie__genres li {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #eff3f7;
+}
 .movie__genres li,
 .movie__year {
   margin-right: 10px;
